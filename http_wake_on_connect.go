@@ -411,8 +411,13 @@ func (s *HTTPWakeOnConnect) looperSSHCall() {
 	<-s.moduleContext.Done()
 }
 
-func (s *HTTPWakeOnConnect) trigger(ctx context.Context) (func(), error) {
+func (s *HTTPWakeOnConnect) trigger(ctx context.Context) (finish func(), err error) {
 	s.inflightTotalReqs.Add(1)
+	defer func() {
+		if finish == nil {
+			s.inflightLastReqs.Add(-1)
+		}
+	}()
 
 loop:
 	for {
