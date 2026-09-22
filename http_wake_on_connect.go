@@ -35,7 +35,7 @@ type HTTPWakeOnConnect struct {
 	WOCSSHAddress         string         `json:"woc_ssh_address,omitempty"`           // mandatory
 	WOCSSHKeyFiles        string         `json:"woc_ssh_key_files,omitempty"`         // default: ~/.ssh/id_ed25519 or ~/.ssh/id_rsa, support multiple fallback keys separated by comma
 	WOCSSHKnownHostsFiles string         `json:"woc_ssh_known_hosts_files,omitempty"` // default: ~/.ssh/known_hosts, support multiple files separated by comma
-	WOCSSHCommand         string         `json:"woc_ssh_command,omitempty"`           // default: tail -f /dev/null
+	WOCSSHCommand         string         `json:"woc_ssh_command,omitempty"`           // default: tail -f /dev/null, make sure to use a long-running command
 	WOCSSHTimeout         caddy.Duration `json:"woc_ssh_timeout,omitempty"`           // default: 30s
 	WOCSSHKeepAlive       caddy.Duration `json:"woc_ssh_keep_alive,omitempty"`        // default: 30s
 	WOCSSHPollingInterval caddy.Duration `json:"woc_ssh_polling_interval,omitempty"`  // default: 250ms
